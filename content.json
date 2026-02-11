@@ -1,0 +1,30 @@
+{
+  "about": {
+    "heading": "Joy Klemt",
+    "text": "Jag förvandlar idéer till fungerande appar genom smart användning av AI-utvecklingsverktyg. Med verktyg som Cursor, Claude Code och Midjourney hjälper jag dig att snabbt ta fram MVPs och prototyper. Mitt fokus ligger på att bygga applikationer som underlättar din vardag."
+  },
+  "apps": [
+    {
+      "name": "Pagina",
+      "description": "En webbapp för att organisera anteckningar från böcker du läser. Istället för lösa lappar strukturerar Pagina dina tankar per bok och kapitel, med sök så du enkelt kan hitta tillbaka till specifika insikter.",
+      "url": "https://paginaz.netlify.app/",
+      "image": "",
+      "tech": ["React", "React Router", "Local Storage", "Lucide React"]
+    },
+    {
+      "name": "Spotter",
+      "description": "En webbapp som hjälper dig logga träning och följa din progress. Istället för att fylla i samma siffror varje gång, kommer appen ihåg dina senaste pass och föreslår värden.",
+      "url": "https://gymbrozz.netlify.app/",
+      "image": "favicon_io (2) (kopia)/android-chrome-192x192.png",
+      "tech": ["Recharts", "Complex State Management", "React Router", "Local Storage"]
+    }
+  ],
+  "footer": {
+    "text": "Joy Klemt Portfolio",
+    "contact": {
+      "phone": "+46707439580",
+      "email": "Joy.klemt@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/joy-klemt/"
+    }
+  }
+}

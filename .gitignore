@@ -1,0 +1,8 @@
+# Mac system files
+.DS_Store
+
+# Log files
+*.log
+
+# Dependencies (if npm is added later)
+node_modules/
