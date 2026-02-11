@@ -233,7 +233,99 @@ body {
   flex-shrink: 0;
 }
 
-/* ---- Responsivitet ---- */
+/* ============================================
+   Responsivitet – mobilanpassning
+   ============================================ */
+
+/* Mobil (< 600px): minskad padding, mindre hero */
+@media (max-width: 599px) {
+  /* Hero: lägre på mobil så mer innehåll syns */
+  .hero {
+    min-height: 35vh;
+  }
+
+  /* Om mig: mindre padding på små skärmar */
+  .about {
+    padding: 2rem 1rem;
+  }
+
+  .about h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-text {
+    font-size: 1rem;
+  }
+
+  /* App-sektion: mindre padding */
+  .apps {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .apps-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* App-kort: en kolumn, bättre touch-ytor */
+  .apps-grid {
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .app-card {
+    padding: 1rem;
+    min-height: 44px; /* Minst 44px för touch */
+  }
+
+  .app-card-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .app-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .app-card p {
+    font-size: 0.85rem;
+  }
+
+  /* Footer: mindre padding på mobil */
+  .footer {
+    padding: 1rem;
+  }
+
+  .footer-contact {
+    gap: 1rem;
+  }
+
+  .footer-contact-link {
+    font-size: 0.85rem;
+  }
+}
+
+/* Små mobil (< 400px): extra kompakta vyer */
+@media (max-width: 399px) {
+  .hero {
+    min-height: 30vh;
+  }
+
+  .about {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .apps {
+    padding: 1.25rem 0.75rem 2.5rem;
+  }
+
+  .app-card {
+    padding: 0.875rem;
+  }
+}
+
+/* Tablet och uppåt (≥ 600px) */
 @media (min-width: 600px) {
   .hero h1 {
     font-size: 3rem;
@@ -244,8 +336,25 @@ body {
   }
 }
 
+/* Desktop (≥ 900px): två kolumner för app-kort */
 @media (min-width: 900px) {
   .apps-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Förhindra horisontell scroll på mobil */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Safe area för mobil med notcher (t.ex. iPhone) */
+@supports (padding: max(0px)) {
+  .footer {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }
