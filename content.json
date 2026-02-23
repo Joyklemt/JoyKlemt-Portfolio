@@ -22,7 +22,7 @@
       "name": "Tenga",
       "description": "Ett personligt rådgivarteam i din webbläsare. Expert Team låter dig bolla idéer med fem AI-experter — strateg, forskare, kreativ, compliance och devil's advocate — antingen i en gemensam kanal eller i privata samtal med varje expert enskilt.",
       "url": "https://tengaz.netlify.app/",
-      "image": "",
+      "image": "favicon_tenga/android-chrome-192x192.png",
       "tech": ["Next.js (App Router)", "API", "SQLite (better-sqlite3)"]
     }
   ],
