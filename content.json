@@ -36,14 +36,14 @@
   ],
 
   "ai_art": [
-    { "title": "Bil",      "image": "bilder/Car.png"        },
-    { "title": "Champagne","image": "bilder/Champagne.png"  },
-    { "title": "DJ",       "image": "bilder/DJ.png"         },
-    { "title": "Formel 1", "image": "bilder/Formul-1.png"   },
-    { "title": "Kite",     "image": "bilder/Kite.png"       },
-    { "title": "Surf",     "image": "bilder/Surf.png"       },
-    { "title": "Dörr",     "image": "bilder/Dörr.mp4"       },
-    { "title": "Djungel",  "image": "bilder/Jungg.mp4"      }
+    { "title": "Bil",      "image": "images/Car.png"        },
+    { "title": "Champagne","image": "images/Champagne.png"  },
+    { "title": "DJ",       "image": "images/DJ.png"         },
+    { "title": "Formel 1", "image": "images/Formul-1.png"   },
+    { "title": "Kite",     "image": "images/Kite.png"       },
+    { "title": "Surf",     "image": "images/Surf.png"       },
+    { "title": "Dörr",     "image": "images/Dörr.mp4"       },
+    { "title": "Djungel",  "image": "images/Jungg.mp4"      }
   ],
 
   "blog": [],
