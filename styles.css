@@ -1,97 +1,294 @@
 /* ============================================
-   Portfolio - Beige tema med svart text
-   Färger: beige bakgrunder, #1A1A1A text
+   Portfolio – Beige + orange accentdesign
+   Färger: #F5F0E8 (cremevit), #E8501A (orange), #1A1A1A (text)
+   Typografi: Georgia serif, kursiv rubrik i hero
    ============================================ */
 
-/* Grundläggande reset och typografi */
+/* ---- CSS-variabler ---- */
+:root {
+  --beige-light:   #F5F0E8;
+  --beige-dark:    #EDE6DB;
+  --border:        #D4C4A8;
+  --text:          #1A1A1A;
+  --orange:        #E8501A;
+  --navbar-height: 64px;
+}
+
+/* ---- Grundläggande reset ---- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
   font-family: Georgia, "Times New Roman", serif;
-  background-color: #F5F0E8;
-  color: #1A1A1A;
+  background-color: var(--beige-light);
+  color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
-/* ---- Hero / Header ---- */
-/* Bilden täcker hela headern, ingen vit/beige bakgrund */
-.hero {
-  position: relative;
-  min-height: 50vh;
-  overflow: hidden;
+/* Offset för ankarlänkar – innehållet hamnar inte bakom navbaren */
+section[id] {
+  scroll-margin-top: calc(var(--navbar-height) + 8px);
+}
+
+
+/* ============================================
+   Fast navbar – 3-kolumns layout
+   Logotyp vänster | Länkrad mitten | CTA höger
+   ============================================ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--navbar-height);
+  background-color: var(--beige-light);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Grid-layout: logo auto | länkar 1fr | cta auto */
+.navbar-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 2rem;
+  gap: 2rem;
+}
+
+/* Logotyp – bold serif i orange */
+.navbar-logo {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--orange);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.navbar-logo:hover {
+  opacity: 0.6;
+}
+
+/* Länkrad – centrerad i mittkolumnen */
+.navbar-links {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Navbar-länk: versaler, bold, glesad bokstavsavstånd */
+.navbar-link {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.navbar-link:hover {
+  opacity: 1;
+}
+
+/* Orange CTA-knapp längst till höger i navbaren */
+.navbar-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  background-color: var(--orange);
+  color: white;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0px #000;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.navbar-cta:hover {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+
+/* ============================================
+   Hero – delad i två kolumner
+   Vänster: text + knappar  |  Höger: robotbild
+   ============================================ */
+
+.hero {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  height: calc(100vh - var(--navbar-height));
+  margin-top: var(--navbar-height);
+  overflow: hidden;
+}
+
+/* Vänster kolumn: innehåll centrerat vertikalt */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 3rem 3rem 4rem;
+}
+
+/* Stor kursiv orange serif-rubrik */
+.hero-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: normal;
+  color: var(--orange);
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+
+/* Luftig brödtext */
+.hero-text {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.85;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+}
+
+/* Knapp-rad */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+
+/* ============================================
+   Knappar (globalt)
+   ============================================ */
+
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0.9rem 2rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  border-radius: 0;
+  cursor: pointer;
+  /* 3D-skugga nedåt-höger */
+  box-shadow: 4px 4px 0px #000;
+  transition: transform 0.1s, box-shadow 0.1s;
+  white-space: nowrap;
 }
 
-/* Hero-bild: fyller hela headern, ingen vit kant */
+/* Hover: knappen trycks in – förflyttas dit skuggan var */
+.btn:hover {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+/* Fylld orange knapp */
+.btn-primary {
+  background-color: var(--orange);
+  color: white;
+  border: 2px solid var(--orange);
+}
+
+/* Kontour-knapp med svart kant, ingen fyllning */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text);
+  border: 2px solid var(--text);
+}
+
+
+/* Höger kolumn: robotbilden fyller hela ytan */
+.hero-right {
+  overflow: hidden;
+}
+
 .hero-image {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
 }
 
-/* Text ovanpå bilden */
-.hero-content {
-  position: relative;
-  z-index: 1;
+
+/* ============================================
+   Gemensamt sektionshuvud (h2)
+   ============================================ */
+
+.section-heading {
+  font-size: 1.8rem;
   text-align: center;
-  padding: 2rem;
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+  margin-bottom: 2rem;
+  color: var(--text);
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #1A1A1A;
-  margin-bottom: 0.5rem;
-}
 
-.hero-subtitle {
-  font-size: 1.2rem;
-  color: #1A1A1A;
-  opacity: 0.9;
-}
+/* ============================================
+   Om-sektionen
+   ============================================ */
 
-/* ---- Om mig ---- */
 .about {
   max-width: 700px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem;
 }
 
 .about h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: #1A1A1A;
+  color: var(--text);
 }
 
 .about-text {
   font-size: 1.1rem;
-  color: #1A1A1A;
+  color: var(--text);
+  line-height: 1.8;
 }
 
-/* ---- Mina appar ---- */
+
+/* ============================================
+   Appar-sektionen
+   ============================================ */
+
 .apps {
-  padding: 2rem 1.5rem 4rem;
-  background-color: #EDE6DB;
-}
-
-.apps-heading {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #1A1A1A;
+  padding: 3.5rem 1.5rem 4.5rem;
+  background-color: var(--beige-dark);
 }
 
 .apps-grid {
@@ -102,33 +299,30 @@ body {
   margin: 0 auto;
 }
 
-/* App-kort: ikon vänster, text höger */
+/* App-kort */
 .app-card {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  text-decoration: none;
-  color: #1A1A1A;
-  background-color: #F5F0E8;
-  border: 1px solid #D4C4A8;
-  border-radius: 8px;
+  color: var(--text);
+  background-color: var(--beige-light);
+  border: 1px solid var(--border);
+  border-radius: 0;          /* Kantigt för att matcha knapp-stilen */
   padding: 1.25rem;
-  transition: background-color 0.2s, box-shadow 0.2s;
+  transition: box-shadow 0.2s;
 }
 
 .app-card:hover {
-  background-color: #EDE6DB;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* Liten app-ikon (48x48) till vänster */
 .app-card-icon {
   width: 48px;
   height: 48px;
   min-width: 48px;
   object-fit: contain;
   border-radius: 10px;
-  background-color: #EDE6DB;
+  background-color: var(--beige-dark);
 }
 
 .app-card-body {
@@ -137,16 +331,15 @@ body {
 }
 
 .app-card h3 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin-bottom: 0.35rem;
 }
 
 .app-card p {
   font-size: 0.9rem;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
-/* Tekniska specifikationer – klick för att visa */
 .app-card-specs-toggle {
   display: block;
   margin-top: 0.75rem;
@@ -155,10 +348,10 @@ body {
   border: none;
   font-family: inherit;
   font-size: 0.85rem;
-  color: #1A1A1A;
+  color: var(--text);
   cursor: pointer;
   text-decoration: underline;
-  opacity: 0.85;
+  opacity: 0.65;
 }
 
 .app-card-specs-toggle:hover {
@@ -167,10 +360,9 @@ body {
 
 .app-card-specs-list {
   margin: 0.5rem 0 0 1rem;
-  padding: 0;
   list-style: disc;
   font-size: 0.85rem;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .app-card-specs-list li {
@@ -183,70 +375,316 @@ body {
 }
 
 .app-card-link {
-  color: #1A1A1A;
+  color: var(--orange);
   text-decoration: underline;
 }
 
 .app-card-link:hover {
+  opacity: 0.75;
+}
+
+
+/* ============================================
+   AI-konst-sektionen – galleri med hover-overlay
+   ============================================ */
+
+.ai-art {
+  padding: 3.5rem 1.5rem 4.5rem;
+  background-color: var(--beige-light);
+}
+
+/* Masonry-layout med CSS columns – bilder flödar i 2 kolumner */
+.ai-art-grid {
+  columns: 2;
+  column-gap: 6px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Varje kort bryter inte mitt itu mellan kolumnerna */
+.ai-art-card {
+  break-inside: avoid;
+  margin-bottom: 6px;
+  background-color: var(--beige-dark);
+}
+
+/* Bild och video: full kolumnbredd, naturlig höjd – ingen cropping */
+.ai-art-card img,
+.ai-art-card video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+/* ============================================
+   Blog-sektionen
+   ============================================ */
+
+.blog {
+  padding: 3.5rem 1.5rem 4.5rem;
+  background-color: var(--beige-dark);
+}
+
+.blog-list {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.blog-card {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-card:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.blog-card-meta time {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 0.4rem;
+}
+
+.blog-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.blog-card p {
+  font-size: 0.95rem;
   opacity: 0.8;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
 }
 
-/* ---- Footer ---- */
-.footer {
-  margin-top: auto;
-  padding: 1.5rem;
-  text-align: center;
-  background-color: #EDE6DB;
-  border-top: 1px solid #D4C4A8;
-}
-
-.footer p {
-  font-size: 0.9rem;
-  color: #1A1A1A;
-  opacity: 0.8;
-}
-
-/* Kontaktuppgifter med ikoner */
-.footer-contact {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.25rem;
-  margin-top: 1rem;
-}
-
-.footer-contact-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: #1A1A1A;
-  text-decoration: none;
-  font-size: 0.9rem;
+.blog-card-link {
+  font-size: 0.85rem;
+  color: var(--orange);
+  text-decoration: underline;
   opacity: 0.85;
+  transition: opacity 0.15s;
 }
 
-.footer-contact-link:hover {
+.blog-card-link:hover {
   opacity: 1;
 }
 
-.footer-contact-link svg {
-  flex-shrink: 0;
-}
 
 /* ============================================
-   Responsivitet – mobilanpassning
+   DJ-sets-sektionen
    ============================================ */
 
-/* Mobil (< 600px): minskad padding, mindre hero */
-@media (max-width: 599px) {
-  /* Hero: lägre på mobil så mer innehåll syns */
+.dj-sets {
+  padding: 3.5rem 1.5rem 4.5rem;
+  background-color: var(--beige-light);
+}
+
+.dj-sets-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+.coming-soon {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Pill-badge runt "Coming Soon" */
+.coming-soon-badge {
+  display: inline-block;
+  padding: 0.35rem 1.25rem;
+  border: 1.5px solid var(--text);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.coming-soon p {
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+
+
+
+/* ============================================
+   Footer – mörk bakgrund med kolumnlayout
+   ============================================ */
+
+.footer {
+  margin-top: auto;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+/* Inre behållare: varumärke vänster, kolumner höger */
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem;
+  display: flex;
+  gap: 5rem;
+  align-items: flex-start;
+}
+
+/* ---- Vänster: varumärke ---- */
+.footer-brand {
+  flex: 0 0 320px;
+}
+
+/* "Joy Klemt" i stor bold text */
+.footer-brand-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.6rem;
+}
+
+/* Tagline i orange under namnet */
+.footer-tagline {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--orange);
+  margin-bottom: 1rem;
+}
+
+/* Kort beskrivningstext */
+.footer-desc {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---- Höger: kolumner ---- */
+.footer-columns {
+  flex: 1;
+  display: flex;
+  gap: 3.5rem;
+}
+
+/* Orange rubrik i versaler */
+.footer-col-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.68rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--orange);
+  margin-bottom: 1.25rem;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.6rem;
+}
+
+/* Länkar i vit text, diskret opacitet */
+.footer-col a {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer-col a:hover {
+  color: white;
+}
+
+/* ---- Botten: tunn linje + copyright ---- */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+}
+
+.footer-bottom p {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+
+/* ============================================
+   Responsivitet
+   ============================================ */
+
+/* Tablet (< 900px): komprimera hero-kolumnerna */
+@media (max-width: 899px) {
   .hero {
-    min-height: 35vh;
+    grid-template-columns: 60fr 40fr;
   }
 
-  /* Om mig: mindre padding på små skärmar */
+  .hero-left {
+    padding: 2.5rem 2rem 2.5rem 2.5rem;
+  }
+
+  /* Navbar: dölj mittenlänkarna, behåll logo + CTA */
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-inner {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+}
+
+/* Mobil (< 600px) */
+@media (max-width: 599px) {
+
+  /* Hero: en kolumn, dölj bilden */
+  .hero {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: calc(100vh - var(--navbar-height));
+  }
+
+  .hero-left {
+    padding: 3rem 1.5rem;
+    justify-content: center;
+  }
+
+  /* Dölj robotbilden på mobil */
+  .hero-right {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+
+  /* Navbar */
+  .navbar-inner {
+    padding: 0 1.25rem;
+  }
+
+  .navbar-cta {
+    padding: 0.45rem 1rem;
+    font-size: 0.65rem;
+  }
+
+  /* Sektioner */
   .about {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .about h2 {
@@ -257,25 +695,27 @@ body {
     font-size: 1rem;
   }
 
-  /* App-sektion: mindre padding */
-  .apps {
-    padding: 1.5rem 1rem 3rem;
-  }
-
-  .apps-heading {
+  .section-heading {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
 
-  /* App-kort: en kolumn, bättre touch-ytor */
+  .apps,
+  .ai-art,
+  .blog,
+  .dj-sets,
+  .contact {
+    padding: 2.5rem 1rem 3.5rem;
+  }
+
+  /* Appar: en kolumn */
   .apps-grid {
-    gap: 1rem;
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .app-card {
     padding: 1rem;
-    min-height: 44px; /* Minst 44px för touch */
   }
 
   .app-card-icon {
@@ -284,77 +724,73 @@ body {
     min-width: 40px;
   }
 
-  .app-card h3 {
+  /* AI-konst: en kolumn på liten mobil */
+  .ai-art-grid {
+    columns: 1;
+  }
+
+  /* Blog: kompaktare */
+  .blog-card {
+    padding: 1.25rem 0;
+  }
+
+  .blog-card h3 {
     font-size: 1.1rem;
   }
 
-  .app-card p {
-    font-size: 0.85rem;
+  /* Knappar: fyllnad för touch */
+  .btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.72rem;
   }
 
-  /* Footer: mindre padding på mobil */
-  .footer {
-    padding: 1rem;
+  /* Footer: stapla brand + kolumner vertikalt */
+  .footer-inner {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 2.5rem 1.25rem 2rem;
   }
 
-  .footer-contact {
-    gap: 1rem;
+  .footer-brand {
+    flex: none;
   }
 
-  .footer-contact-link {
-    font-size: 0.85rem;
+  .footer-columns {
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    padding: 1rem 1.25rem;
   }
 }
 
-/* Små mobil (< 400px): extra kompakta vyer */
+/* Liten mobil (< 400px) */
 @media (max-width: 399px) {
-  .hero {
-    min-height: 30vh;
+  .ai-art-grid {
+    columns: 1;
   }
 
-  .about {
-    padding: 1.5rem 0.75rem;
+  .hero-buttons {
+    flex-direction: column;
   }
 
-  .apps {
-    padding: 1.25rem 0.75rem 2.5rem;
-  }
-
-  .app-card {
-    padding: 0.875rem;
+  .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
-/* Tablet och uppåt (≥ 600px) */
-@media (min-width: 600px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.35rem;
-  }
-}
-
-/* Desktop (≥ 900px): två kolumner för app-kort */
+/* Desktop: app-grid 2 kolumner, AI-konst-grid 4 kolumner */
 @media (min-width: 900px) {
   .apps-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Förhindra horisontell scroll på mobil */
-html {
-  overflow-x: hidden;
-}
 
-body {
-  overflow-x: hidden;
-}
-
-/* Safe area för mobil med notcher (t.ex. iPhone) */
+/* Safe area för iPhones med notch */
 @supports (padding: max(0px)) {
   .footer {
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   }
 }

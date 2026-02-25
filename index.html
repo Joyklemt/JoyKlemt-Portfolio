@@ -8,35 +8,117 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Hero: bild täcker hela headern, text ovanpå -->
+
+  <!-- Fast navbar: logotyp vänster, länkrad mitten, CTA-knapp höger -->
+  <nav class="navbar" role="navigation" aria-label="Huvudnavigation">
+    <div class="navbar-inner">
+      <a href="#" class="navbar-logo">Joy Klemt</a>
+      <ul class="navbar-links" role="list">
+        <li><a href="#appar"    class="navbar-link">Appar</a></li>
+        <li><a href="#ai-konst" class="navbar-link">AI-konst</a></li>
+        <li><a href="#blog"     class="navbar-link">Blog</a></li>
+        <li><a href="#dj-sets"  class="navbar-link">DJ-sets</a></li>
+      </ul>
+      <a href="#kontakt" class="navbar-cta">Kontakt</a>
+    </div>
+  </nav>
+
+  <!-- Hero: delad i två kolumner – vänster text+knappar, höger robotbild -->
   <header class="hero">
-    <img 
-      src="Joy Klemt portfolio.png" 
-      alt="Portfolio" 
-      class="hero-image"
-    >
+
+    <!-- Vänster kolumn: kursiv orange rubrik, ingress och två knappar -->
+    <div class="hero-left">
+      <h1 id="hero-title" class="hero-title">Joy Klemt</h1>
+      <p id="hero-text" class="hero-text">Text laddas från content.json</p>
+      <div id="hero-buttons" class="hero-buttons">
+        <a href="#appar"   id="hero-btn-primary"   class="btn btn-primary">Se mina projekt</a>
+        <a href="#kontakt" id="hero-btn-secondary"  class="btn btn-secondary">Kontakta mig</a>
+      </div>
+    </div>
+
+    <!-- Höger kolumn: robotbild täcker hela höjden -->
+    <div class="hero-right">
+      <img src="Joyklemt robot.png" alt="Joy Klemt" class="hero-image">
+    </div>
+
   </header>
 
   <main>
-    <!-- Om mig / Vad jag gör -->
-    <section class="about">
-      <h2 id="about-heading">Vad jag gör</h2>
-      <p id="about-text" class="about-text">Text laddas från content.json</p>
-    </section>
 
-    <!-- Mina appar: klickbara kort -->
-    <section class="apps">
-      <h2 class="apps-heading">Mina appar</h2>
+    <!-- Appar: klickbara projektkort, renderas av script.js -->
+    <section id="appar" class="apps">
+      <h2 class="section-heading">Mina appar</h2>
       <div id="apps-grid" class="apps-grid">
-        <!-- App-kort skapas av script.js -->
+        <!-- App-kort skapas dynamiskt av script.js -->
       </div>
     </section>
+
+    <!-- AI-konst: bildgrid, renderas av script.js -->
+    <section id="ai-konst" class="ai-art">
+      <h2 class="section-heading">AI-konst</h2>
+      <div id="ai-art-grid" class="ai-art-grid">
+        <!-- AI-bildkort skapas dynamiskt av script.js -->
+      </div>
+    </section>
+
+    <!-- Blog: artikelkort, renderas av script.js -->
+    <section id="blog" class="blog">
+      <h2 class="section-heading">Blog</h2>
+      <div id="blog-list" class="blog-list">
+        <!-- Blogginlägg skapas dynamiskt av script.js -->
+      </div>
+    </section>
+
+    <!-- DJ-sets: coming soon, renderas av script.js -->
+    <section id="dj-sets" class="dj-sets">
+      <h2 class="section-heading">DJ-sets</h2>
+      <div id="dj-sets-content" class="dj-sets-content">
+        <!-- DJ-innehåll skapas dynamiskt av script.js -->
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p id="footer-text">Joy Klemt Portfolio</p>
-    <div id="footer-contact" class="footer-contact"></div>
+  <!-- Footer: mörk bakgrund, varumärke vänster + kolumner höger -->
+  <footer id="kontakt" class="footer">
+    <div class="footer-inner">
+
+      <!-- Vänster: varumärke -->
+      <div class="footer-brand">
+        <p class="footer-brand-name">Joy Klemt</p>
+        <p id="footer-tagline" class="footer-tagline">Förvandlar idéer till fungerande appar.</p>
+        <p id="footer-desc"    class="footer-desc">Text laddas från content.json</p>
+      </div>
+
+      <!-- Höger: navigera + kontakt -->
+      <div class="footer-columns">
+
+        <!-- Kolumn 1: navigering -->
+        <div class="footer-col">
+          <h3 class="footer-col-heading">Navigera</h3>
+          <ul>
+            <li><a href="#">Om</a></li>
+            <li><a href="#appar">Appar</a></li>
+            <li><a href="#ai-konst">AI-konst</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#dj-sets">DJ-sets</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolumn 2: kontaktuppgifter, fylls av script.js -->
+        <div class="footer-col">
+          <h3 class="footer-col-heading">Kontakt</h3>
+          <ul id="footer-contact-list"></ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tunn linje + copyright -->
+    <div class="footer-bottom">
+      <p id="footer-copyright">© 2025 Joy Klemt</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>

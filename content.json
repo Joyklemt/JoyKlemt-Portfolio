@@ -1,8 +1,16 @@
 {
+  "hero": {
+    "title": "Joy Klemt",
+    "text": "Jag förvandlar idéer till fungerande appar genom smart användning av AI-utvecklingsverktyg. Med verktyg som Cursor, Claude Code och Midjourney hjälper jag dig att snabbt ta fram MVPs och prototyper. Mitt fokus ligger på att bygga applikationer som underlättar din vardag.",
+    "btn_primary":   { "label": "Se mina projekt", "href": "#appar"   },
+    "btn_secondary": { "label": "Kontakta mig",    "href": "#kontakt" }
+  },
+
   "about": {
     "heading": "Joy Klemt",
     "text": "Jag förvandlar idéer till fungerande appar genom smart användning av AI-utvecklingsverktyg. Med verktyg som Cursor, Claude Code och Midjourney hjälper jag dig att snabbt ta fram MVPs och prototyper. Mitt fokus ligger på att bygga applikationer som underlättar din vardag."
   },
+
   "apps": [
     {
       "name": "Pagina",
@@ -26,8 +34,29 @@
       "tech": ["Next.js (App Router)", "API", "SQLite (better-sqlite3)"]
     }
   ],
+
+  "ai_art": [
+    { "title": "Bil",      "image": "bilder/Car.png"        },
+    { "title": "Champagne","image": "bilder/Champagne.png"  },
+    { "title": "DJ",       "image": "bilder/DJ.png"         },
+    { "title": "Formel 1", "image": "bilder/Formul-1.png"   },
+    { "title": "Kite",     "image": "bilder/Kite.png"       },
+    { "title": "Surf",     "image": "bilder/Surf.png"       },
+    { "title": "Dörr",     "image": "bilder/Dörr.mp4"       },
+    { "title": "Djungel",  "image": "bilder/Jungg.mp4"      }
+  ],
+
+  "blog": [],
+
+  "dj_sets": {
+    "coming_soon": true,
+    "text": "DJ-sets och mixes publiceras snart"
+  },
+
   "footer": {
-    "text": "Joy Klemt Portfolio",
+    "tagline": "Förvandlar idéer till fungerande appar.",
+    "description": "Bygger appar med AI-verktyg i framkant — snabbt, smart och fokuserat på det som faktiskt spelar roll.",
+    "copyright": "© 2025 Joy Klemt",
     "contact": {
       "phone": "+46707439580",
       "email": "Joy.klemt@gmail.com",
