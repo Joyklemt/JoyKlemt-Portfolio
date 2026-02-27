@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Architects+Daughter&family=Dancing+Script:wght@400;700&display=swap');
+
+/* ══════════════════════════════════════════
+   Fortune Cookie Component
+   All selectors scoped to .fortune-cookie-wrapper
+   ══════════════════════════════════════════ */
+
+.fortune-cookie-wrapper {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+/* ── Arrow label ── */
+.fortune-cookie-wrapper .cookie-arrow {
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: #5d4037;
+    transform: rotate(-8deg);
+    margin-bottom: 6px;
+    pointer-events: none;
+    opacity: 0.85;
+    letter-spacing: 0.3px;
+}
+
+/* ── Container ── */
+.fortune-cookie-wrapper .fortune-cookie-container {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.fortune-cookie-wrapper .fortune-cookie-container:hover {
+    transform: scale(1.05);
+    animation-play-state: paused;
+}
+
+/* ── Cookie halves ── */
+.fortune-cookie-wrapper .fortune-cookie {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform-origin: center;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.fortune-cookie-wrapper .fortune-cookie-left {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="cgL" cx="50%" cy="50%" r="50%" fx="50%" fy="50%"><stop offset="0%" stop-color="%23f5d08a"/><stop offset="100%" stop-color="%23e6b94d"/></radialGradient><radialGradient id="ckL" cx="35" cy="55" r="8" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="%23e57373" stop-opacity="0.7"/><stop offset="100%" stop-color="%23e57373" stop-opacity="0"/></radialGradient></defs><path fill="url(%23cgL)" d="M50,20 A30,30 0 0,0 20,50 A30,30 0 0,0 50,80 L50,20 Z"/><circle fill="%23333" cx="35" cy="40" r="3.5"/><circle fill="%23fff" cx="33" cy="38" r="1"/><path d="M30,35 Q35,32 40,35" stroke="%23333" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle fill="url(%23ckL)" cx="35" cy="55" r="8"/></svg>');
+    transform-origin: right center;
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.fortune-cookie-wrapper .fortune-cookie-right {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="cgR" cx="50%" cy="50%" r="50%" fx="50%" fy="50%"><stop offset="0%" stop-color="%23f5d08a"/><stop offset="100%" stop-color="%23e6b94d"/></radialGradient><radialGradient id="ckR" cx="65" cy="55" r="8" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="%23e57373" stop-opacity="0.7"/><stop offset="100%" stop-color="%23e57373" stop-opacity="0"/></radialGradient></defs><path fill="url(%23cgR)" d="M50,20 A30,30 0 0,1 80,50 A30,30 0 0,1 50,80 L50,20 Z"/><circle fill="%23333" cx="65" cy="40" r="3.5"/><circle fill="%23fff" cx="63" cy="38" r="1"/><path d="M60,35 Q65,32 70,35" stroke="%23333" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle fill="url(%23ckR)" cx="65" cy="55" r="8"/></svg>');
+    transform-origin: left center;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+/* ── Crumbs ── */
+.fortune-cookie-wrapper .cookie-pieces {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.fortune-cookie-wrapper .cookie-piece {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+}
+
+/* ── Fortune slip ── */
+.fortune-cookie-wrapper .fortune-paper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0) translateZ(0);
+    width: 80%;
+    max-width: 240px;
+    background-color: #fffaf0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: 0.3s;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #5d4037;
+    border: 1px solid rgba(0,0,0,0.05);
+    font-family: 'Architects Daughter', cursive;
+    letter-spacing: 0.5px;
+}
+
+/* ── Open state ── */
+.fortune-cookie-wrapper .cookie-open .fortune-cookie-left {
+    transform: translate3d(-40px, -15px, 10px) rotate3d(0.5, 1, 0.2, -45deg);
+    opacity: 0.95;
+    filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.2));
+}
+
+.fortune-cookie-wrapper .cookie-open .fortune-cookie-right {
+    transform: translate3d(40px, 15px, 10px) rotate3d(0.5, 1, 0.2, 45deg);
+    opacity: 0.95;
+    filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.2));
+}
+
+.fortune-cookie-wrapper .cookie-open .cookie-pieces {
+    opacity: 1;
+}
+
+.fortune-cookie-wrapper .cookie-open .fortune-paper {
+    transform: translate(-50%, -50%) scale(1) translateZ(50px);
+    opacity: 1;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* ── Reset button (dold – ersatt av comeback-meddelande) ── */
+.fortune-cookie-wrapper .reset-button {
+    display: none;
+}
+
+/* ── Comeback-meddelande ── */
+.fortune-cookie-wrapper .cookie-comeback {
+    color: #2d6a4f;
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 15px;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.fortune-cookie-wrapper .cookie-comeback.visible {
+    opacity: 1;
+}
+
+/* ── Mouth curve (::before) & glow (::after) ── */
+/* Positions scaled from 200px → 220px */
+.fortune-cookie-wrapper .fortune-cookie-container::before {
+    content: '';
+    position: absolute;
+    width: 55px;
+    height: 22px;
+    border-radius: 0 0 28px 28px;
+    border: 2px solid #333;
+    border-top: none;
+    top: 121px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: transparent;
+    pointer-events: none;
+}
+
+.fortune-cookie-wrapper .cookie-open .fortune-cookie-container::before {
+    opacity: 0;
+}
+
+.fortune-cookie-wrapper .fortune-cookie-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    animation: pulse 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ── Smile dimples ── */
+.fortune-cookie-wrapper .fortune-cookie-container .smile-dimple-left,
+.fortune-cookie-wrapper .fortune-cookie-container .smile-dimple-right {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #333;
+    top: 121px;
+    z-index: 11;
+    pointer-events: none;
+}
+
+.fortune-cookie-wrapper .fortune-cookie-container .smile-dimple-left  { left: calc(50% - 28px); }
+.fortune-cookie-wrapper .fortune-cookie-container .smile-dimple-right { left: calc(50% + 23px); }
+
+.fortune-cookie-wrapper .cookie-open .smile-dimple-left,
+.fortune-cookie-wrapper .cookie-open .smile-dimple-right {
+    opacity: 0;
+}
+
+/* ── Keyframes ── */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0)  rotate(0deg);  }
+    25%       { transform: translateY(-4px) rotate(1deg);  }
+    50%       { transform: translateY(-8px) rotate(2deg);  }
+    75%       { transform: translateY(-4px) rotate(-1deg); }
+}
+
+@keyframes pulse {
+    0%   { transform: scale(1);    box-shadow: 0 0 0 0    rgba(230,185,77,0.2); }
+    50%  { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(230,185,77,0);   }
+    100% { transform: scale(1);    box-shadow: 0 0 0 0    rgba(230,185,77,0);   }
+}
+
+@keyframes crackPiece {
+    0%   { opacity: 0; transform: translate(0,0) scale(0) rotate(0deg); }
+    20%  { opacity: 1; transform: translate(calc(var(--tx) * 0.5), calc(var(--ty) * 0.5)) scale(1) rotate(calc(var(--tr) * 0.5)); }
+    100% { opacity: 0; transform: translate(var(--tx), calc(var(--ty) + 50px)) scale(0.5) rotate(var(--tr)); }
+}
