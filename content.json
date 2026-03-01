@@ -32,6 +32,13 @@
       "url": "https://tengaz.netlify.app/",
       "image": "favicon_tenga/android-chrome-192x192.png",
       "tech": ["Next.js (App Router)", "API", "SQLite (better-sqlite3)"]
+    },
+    {
+      "name": "Savory",
+      "description": "En webbapp för att samla och organisera recept från skärmdumpar. Ladda upp receptfoton som automatiskt tolkas av AI och sparas strukturerat – sök på ingredienser du har hemma och hitta rätt recept direkt.",
+      "url": "https://atterecipe.netlify.app/",
+      "image": "Savory/android-chrome-192x192.png",
+      "tech": ["Claude Vision API", "React PWA", "Node.js / Express", "Supabase (PostgreSQL + Storage)", "Ingredient search with AI synonyms", "PDF export"]
     }
   ],
 
