@@ -39,6 +39,14 @@
       "url": "https://atterecipe.netlify.app/",
       "image": "Savory/android-chrome-192x192.png",
       "tech": ["Claude Vision API", "React PWA", "Node.js / Express", "Supabase (PostgreSQL + Storage)", "Ingredient search with AI synonyms", "PDF export"]
+    },
+    {
+      "name": "Next.js Tree Visualizer",
+      "description": "En interaktiv visualisering av hur en Next.js App Router-struktur fungerar som ett träd. Klicka dig igenom filstrukturen och se hur routes, layouts och komponenter hänger ihop.",
+      "url": "https://github.com/Joyklemt/tree",
+      "image": "images/tree-icon.svg",
+      "tech": ["React 19", "Vite", "Tailwind CSS 3", "Framer Motion"],
+      "linkText": "Se på GitHub →"
     }
   ],
 

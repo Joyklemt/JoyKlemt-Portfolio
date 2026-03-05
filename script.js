@@ -147,17 +147,22 @@ function renderApps(apps) {
       body.appendChild(specsList);
     }
 
-    // "Besök appen →"-länk längst ner
+    // Länk längst ner i kortet
     const länkRad = document.createElement("div");
     länkRad.className = "app-card-link-row";
-    länkRad.innerHTML = "Besök appen → ";
 
     const besökLänk = document.createElement("a");
     besökLänk.href      = app.url || "#";
     besökLänk.className = "app-card-link";
     besökLänk.setAttribute("target", "_blank");
     besökLänk.setAttribute("rel", "noopener noreferrer");
-    besökLänk.textContent = app.name || "App";
+
+    if (app.linkText) {
+      besökLänk.textContent = app.linkText;
+    } else {
+      länkRad.innerHTML = "Besök appen → ";
+      besökLänk.textContent = app.name || "App";
+    }
     länkRad.appendChild(besökLänk);
 
     body.appendChild(länkRad);
