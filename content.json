@@ -61,7 +61,14 @@
     { "title": "Djungel",  "image": "images/Jungg.mp4"      }
   ],
 
-  "blog": [],
+  "blog": [
+    {
+      "title": "Vad är egentligen en LLM?",
+      "date": "2025-03-09",
+      "slug": "vad-ar-egentligen-en-llm",
+      "summary": "Mitt första inlägg handlar om det praktiska användandet av AI och vad som egentligen händer när du chattar med en LLM."
+    }
+  ],
 
   "dj_sets": {
     "coming_soon": true,

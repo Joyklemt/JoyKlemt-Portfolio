@@ -224,7 +224,7 @@ function renderAiArt(aiArt) {
    Blog-sektionen
    ============================================ */
 
-/** Skapar artikelkort i blog-sektionen, eller visar "Kommer snart" */
+/** Skapar klickbara bloggkort i samma stil som app-korten */
 function renderBlog(blog) {
   const lista = document.getElementById("blog-list");
   if (!lista) return;
@@ -244,47 +244,55 @@ function renderBlog(blog) {
   }
 
   blog.forEach((inlägg) => {
-    const card = document.createElement("article");
-    card.className = "blog-card";
+    const card = document.createElement("a");
+    card.className = "app-card blog-card-link-wrap";
+    card.href = "blog.html#" + (inlägg.slug || "");
+    card.style.textDecoration = "none";
+    card.style.color = "inherit";
+    card.style.cursor = "pointer";
 
-    // Datum i liten versaltext ovanför titeln
+    const body = document.createElement("div");
+    body.className = "app-card-body";
+
+    // Datum
     if (inlägg.date) {
-      const meta = document.createElement("div");
-      meta.className = "blog-card-meta";
-
       const tid = document.createElement("time");
       tid.dateTime = inlägg.date;
-      // Formattera datum till läsbar svenska, t.ex. "15 januari 2025"
       const d = new Date(inlägg.date);
       tid.textContent = d.toLocaleDateString("sv-SE", {
         year:  "numeric",
         month: "long",
         day:   "numeric",
       });
-
-      meta.appendChild(tid);
-      card.appendChild(meta);
+      tid.style.fontSize       = "0.72rem";
+      tid.style.letterSpacing  = "0.08em";
+      tid.style.textTransform  = "uppercase";
+      tid.style.opacity        = "0.5";
+      tid.style.display        = "block";
+      tid.style.marginBottom   = "0.4rem";
+      body.appendChild(tid);
     }
 
     const titel = document.createElement("h3");
     titel.textContent = inlägg.title || "";
-    card.appendChild(titel);
+    body.appendChild(titel);
 
     if (inlägg.summary) {
       const sammanfattning = document.createElement("p");
       sammanfattning.textContent = inlägg.summary;
-      card.appendChild(sammanfattning);
+      body.appendChild(sammanfattning);
     }
 
-    // Visa "Läs mer →"-länk bara om URL inte är en platshållare
-    if (inlägg.url && inlägg.url !== "#") {
-      const länk = document.createElement("a");
-      länk.href      = inlägg.url;
-      länk.className = "blog-card-link";
-      länk.textContent = "Läs mer →";
-      card.appendChild(länk);
-    }
+    // "Läs mer →" länk-text
+    const länkRad = document.createElement("div");
+    länkRad.className = "app-card-link-row";
+    const länkText = document.createElement("span");
+    länkText.className = "app-card-link";
+    länkText.textContent = "Läs mer →";
+    länkRad.appendChild(länkText);
+    body.appendChild(länkRad);
 
+    card.appendChild(body);
     lista.appendChild(card);
   });
 }

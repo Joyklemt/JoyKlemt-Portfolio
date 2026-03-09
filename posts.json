@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Vad är egentligen en LLM?",
+    "date": "2025-03-09",
+    "slug": "vad-ar-egentligen-en-llm",
+    "excerpt": "Mitt första inlägg handlar om det praktiska användandet av AI och vad som egentligen händer när du chattar med en LLM.",
+    "body": "Hej!\n\nJag tänkte att mitt första inlägg skulle vara lite mer av det praktiska användandet av AI. När jag nu pratar om AI så syftar jag till Large Language Models, även kallad LLMs. Ett av de mest vanliga sätten att integrera med en LLM är på webben i ett chattfönster. När du skriver med t.ex. ChatGPT, Claude, Gemini, Copilot eller DeepSeek integrerar du med en LLM.\n\nSå vad är det egentligen det du chattar med? Jag tror på att förstå grunden av ett verktyg för att kunna använda det rätt. Jag kommer nu på ett väldigt förenklat och simpelt sätt att förklara detta utan att dra in komplexitet.\n\nI grund och botten försöker en LLM klara av en ordgissningslek givet att modellerna har blivit tränad på mängder av text. Modellen försöker producera text som känns rimlig givet den prompt du skrivit. Förenklat tänker den \"Det här är den typ av text som skulle passa givet prompten.\" Det betyder att modellen inte resonerar logiskt i traditionell mening, den går enbart på vad som statistiskt sett känns mest troligt.\n\nNu är detta en enkel förklaring av en LLM, men det kan möjligtvis fungera som en vägvisare för hur detta verktyg kan användas. Så i en värld där vi nu kan få ett svar i världsklass sätter det väldigt mycket ansvar på att du som användare kan ställa rätt frågor givet det du undrar om."
+  }
+]

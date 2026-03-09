@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Joy Klemt</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Fast navbar: logotyp vänster, länkrad mitten, CTA-knapp höger -->
+  <nav class="navbar" role="navigation" aria-label="Huvudnavigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Joy Klemt</a>
+      <ul class="navbar-links" role="list">
+        <li><a href="index.html#appar"    class="navbar-link">Appar</a></li>
+        <li><a href="index.html#ai-konst" class="navbar-link">AI-konst</a></li>
+        <li><a href="blog.html"           class="navbar-link">Blog</a></li>
+        <li><a href="index.html#dj-sets"  class="navbar-link">DJ-sets</a></li>
+      </ul>
+      <a href="index.html#kontakt" class="navbar-cta">Kontakt</a>
+    </div>
+  </nav>
+
+  <main style="margin-top: var(--navbar-height);">
+
+    <section class="blog">
+      <h2 class="section-heading">Blog</h2>
+      <div id="blog-list" class="blog-list">
+        <!-- Blogginlägg skapas dynamiskt -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer: mörk bakgrund, varumärke vänster + kolumner höger -->
+  <footer id="kontakt" class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-brand-name">Joy Klemt</p>
+        <p class="footer-tagline">Förvandlar idéer till fungerande appar.</p>
+        <p class="footer-desc">Bygger appar med AI-verktyg i framkant — snabbt, smart och fokuserat på det som faktiskt spelar roll.</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h3 class="footer-col-heading">Navigera</h3>
+          <ul>
+            <li><a href="index.html">Om</a></li>
+            <li><a href="index.html#appar">Appar</a></li>
+            <li><a href="index.html#ai-konst">AI-konst</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#dj-sets">DJ-sets</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-heading">Kontakt</h3>
+          <ul id="footer-contact-list"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Joy Klemt</p>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * Blog-sidan – Laddar och renderar inlägg från posts.json.
+     */
+
+    async function loadPosts() {
+      try {
+        const response = await fetch("posts.json?t=" + Date.now());
+        if (!response.ok) throw new Error("Kunde inte ladda posts.json");
+        const posts = await response.json();
+        renderPosts(posts);
+      } catch (err) {
+        console.error("Fel vid laddning av inlägg:", err);
+      }
+    }
+
+    function renderPosts(posts) {
+      const lista = document.getElementById("blog-list");
+      if (!lista) return;
+      lista.innerHTML = "";
+
+      if (!posts || posts.length === 0) {
+        const wrapper = document.createElement("div");
+        wrapper.style.textAlign = "center";
+        wrapper.style.padding   = "2.5rem 0";
+        const badge = document.createElement("span");
+        badge.className   = "btn btn-primary";
+        badge.textContent = "Kommer snart";
+        wrapper.appendChild(badge);
+        lista.appendChild(wrapper);
+        return;
+      }
+
+      // Hitta rätt inlägg baserat på URL-hash, eller visa alla
+      var hash = window.location.hash.slice(1);
+      var matchande = hash ? posts.filter(function(p) { return p.slug === hash; }) : posts;
+      if (matchande.length === 0) matchande = posts;
+
+      matchande.forEach(function(inlägg) {
+        const card = document.createElement("article");
+        card.className = "blog-card";
+        card.id = inlägg.slug || "";
+
+        // Datum
+        if (inlägg.date) {
+          const meta = document.createElement("div");
+          meta.className = "blog-card-meta";
+          const tid = document.createElement("time");
+          tid.dateTime = inlägg.date;
+          const d = new Date(inlägg.date);
+          tid.textContent = d.toLocaleDateString("sv-SE", {
+            year:  "numeric",
+            month: "long",
+            day:   "numeric",
+          });
+          meta.appendChild(tid);
+          card.appendChild(meta);
+        }
+
+        // Titel
+        const titel = document.createElement("h3");
+        titel.textContent = inlägg.title || "";
+        card.appendChild(titel);
+
+        // Brödtext
+        if (inlägg.body) {
+          var stycken = inlägg.body.split("\n\n");
+          stycken.forEach(function(stycke) {
+            if (stycke.trim() === "") return;
+            var p = document.createElement("p");
+            p.textContent = stycke;
+            card.appendChild(p);
+          });
+        }
+
+        lista.appendChild(card);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      loadPosts();
+    });
+  </script>
+</body>
+</html>
