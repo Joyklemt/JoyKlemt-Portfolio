@@ -23,7 +23,7 @@
     </div>
   </nav>
 
-  <main style="margin-top: var(--navbar-height);">
+  <main style="margin-top: var(--navbar-height); opacity: 0; transition: opacity 0.3s ease;" id="blog-main">
 
     <section class="blog">
       <h2 class="section-heading">Blog</h2>
@@ -76,6 +76,7 @@
         if (!response.ok) throw new Error("Kunde inte ladda posts.json");
         const posts = await response.json();
         renderPosts(posts);
+        document.getElementById("blog-main").style.opacity = "1";
       } catch (err) {
         console.error("Fel vid laddning av inlägg:", err);
       }
