@@ -137,8 +137,23 @@
             if (stycke.trim() === "") return;
             var p = document.createElement("p");
             p.textContent = stycke;
+            if (stycke.trim().startsWith("Edit")) {
+              p.style.fontStyle = "italic";
+            }
             card.appendChild(p);
           });
+        }
+
+        // Video
+        if (inlägg.video) {
+          var video = document.createElement("video");
+          video.src = inlägg.video;
+          video.controls = true;
+          video.style.width = "100%";
+          video.style.maxWidth = "640px";
+          video.style.borderRadius = "12px";
+          video.style.marginTop = "1.5rem";
+          card.appendChild(video);
         }
 
         lista.appendChild(card);
