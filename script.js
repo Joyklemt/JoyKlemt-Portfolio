@@ -26,7 +26,7 @@ async function loadContent() {
     renderApps(data.apps || []);
     renderAiArt(data.ai_art || []);
     renderBlog(data.blog || []);
-    renderDjSets(data.dj_sets || {});
+    renderDjSets(data.dj_sets || []);
     renderFooter(data.footer);
 
   } catch (err) {
@@ -302,24 +302,38 @@ function renderBlog(blog) {
    DJ-sets-sektionen
    ============================================ */
 
-/** Visar "Coming Soon"-markering i DJ-sets-sektionen */
+/** Renderar YouTube DJ-sets med thumbnail och embed */
 function renderDjSets(djSets) {
   const innehåll = document.getElementById("dj-sets-content");
   if (!innehåll) return;
   innehåll.innerHTML = "";
 
-  if (djSets.coming_soon) {
-    const omslag = document.createElement("div");
-    omslag.className = "coming-soon";
+  if (!Array.isArray(djSets) || djSets.length === 0) return;
 
-    const badge = document.createElement("span");
-    badge.className   = "btn btn-primary";
-    badge.textContent = "Kommer snart";
-    omslag.appendChild(badge);
+  const grid = document.createElement("div");
+  grid.className = "dj-sets-grid";
 
+  djSets.forEach((set) => {
+    const kort = document.createElement("div");
+    kort.className = "dj-set-card";
 
-    innehåll.appendChild(omslag);
-  }
+    const embedOmslag = document.createElement("div");
+    embedOmslag.className = "dj-embed-wrapper";
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${set.youtube_id}?rel=0&modestbranding=1`;
+    iframe.title = set.title;
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allowFullscreen = true;
+    iframe.loading = "lazy";
+
+    embedOmslag.appendChild(iframe);
+
+    kort.appendChild(embedOmslag);
+    grid.appendChild(kort);
+  });
+
+  innehåll.appendChild(grid);
 }
 
 

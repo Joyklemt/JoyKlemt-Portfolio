@@ -70,10 +70,18 @@
     }
   ],
 
-  "dj_sets": {
-    "coming_soon": true,
-    "text": "DJ-sets och mixes publiceras snart"
-  },
+  "dj_sets": [
+    {
+      "title": "DJ Set #1",
+      "youtube_id": "9LSJFTe1msU",
+      "url": "https://www.youtube.com/watch?v=9LSJFTe1msU"
+    },
+    {
+      "title": "DJ Set #2",
+      "youtube_id": "SD8d-1Xhae4",
+      "url": "https://www.youtube.com/watch?v=SD8d-1Xhae4"
+    }
+  ],
 
   "footer": {
     "tagline": "Förvandlar idéer till fungerande appar.",
