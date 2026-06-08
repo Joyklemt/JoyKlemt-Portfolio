@@ -1,14 +1,14 @@
 {
   "hero": {
     "title": "Joy Klemt",
-    "text": "Jag förvandlar idéer till fungerande appar genom smart användning av AI-utvecklingsverktyg. Med verktyg som Cursor, Claude Code och Midjourney hjälper jag dig att snabbt ta fram MVPs och prototyper. Mitt fokus ligger på att bygga applikationer som underlättar din vardag.",
+    "text": "Jag förvandlar idéer till fungerande appar genom smart användning av AI-utvecklingsverktyg.",
     "btn_primary":   { "label": "Se mina projekt", "href": "#appar"   },
     "btn_secondary": { "label": "Kontakta mig",    "href": "#kontakt" }
   },
 
   "about": {
     "heading": "Joy Klemt",
-    "text": "Jag förvandlar idéer till fungerande appar genom smart användning av AI-utvecklingsverktyg. Med verktyg som Cursor, Claude Code och Midjourney hjälper jag dig att snabbt ta fram MVPs och prototyper. Mitt fokus ligger på att bygga applikationer som underlättar din vardag."
+    "text": "Jag förvandlar idéer till fungerande appar genom smart användning av AI-utvecklingsverktyg."
   },
 
   "apps": [
